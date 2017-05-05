@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <style type="text/css">
+      body,html,#container{
+        height: 100%;
+        margin: 0px;
+        font:12px Arial;
+      }
+      .taiwan{
+      	border: solid 1px red;
+      	color: red;
+      	float: left;
+      	width: 50px;
+      	background-color: rgba(255,0,0,0.1)
+      }
+    </style>
+    <title>Marker example</title>
+  </head>
+  <body>
+   <div id="container" tabindex="0"></div>
+   <script src="http://webapi.amap.com/js/marker.js"></script>
+   <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=ceb056273367503377ba0bc644c38e9a"></script>
+		
+   <script type="text/javascript">
+   	var getRandomColor = function(){
+				  return '#'+('00000'+(Math.random()*0x1000000<<0).toString(16)).substr(-6); 
+				}
+				provinces = [
+				{name:'吴江大智',data:'120.646637,31.190911',accurate:100},
+{name:'昆山长腾',data:'121.014102,31.42435',accurate:100},
+{name:'雄城',data:'118.089419,24.455124',accurate:100},
+{name:'盛宏',data:'120.982375,31.439093',accurate:100},
+{name:'铭耀杰',data:'120.946913,31.468076',accurate:100},
+{name:'巨圣',data:'120.953857,31.308144',accurate:100},
+{name:'欣诚利',data:'120.885119,31.280384',accurate:100},
+{name:'信隆',data:'106.442702,25.992566',accurate:100},
+{name:'众翔',data:'121.041152,31.50653',accurate:100},
+{name:'研精舍',data:'120.705997,31.707246',accurate:100},
+{name:'美表',data:'121.272744,30.80016',accurate:100},
+{name:'日腾',data:'121.302694,31.039431',accurate:100},
+{name:'仓庆',data:'121.038253,31.495526',accurate:100},
+{name:'木巷',data:'120.514608,31.420891',accurate:100},
+{name:'汉鼎',data:'121.016899,31.320042',accurate:100},
+{name:'同鼎',data:'121.023338,31.419785',accurate:100},
+{name:'蔡利',data:'121.09469,31.192724',accurate:100},
+{name:'新友盛',data:'120.945501,31.299128',accurate:100},
+{name:'绿镁',data:'118.460748,31.48952',accurate:100},
+{name:'汉扬--汉达',data:'121.016899,31.320042',accurate:100},
+{name:'力捷',data:'117.488098,30.673202',accurate:100},
+{name:'铂汉',data:'120.642663,31.369088',accurate:100},
+{name:'锦泰',data:'121.157631,31.472527',accurate:100},
+{name:'纬立',data:'119.877882,32.429629',accurate:100},
+{name:'上凯',data:'120.592823,31.07518',accurate:100},
+{name:'海宝',data:'120.481257,31.586704',accurate:100},
+{name:'东盺',data:'120.517115,31.393186',accurate:100},
+{name:'阿米特',data:'120.516762,31.393081',accurate:100},
+{name:'内江巨腾',data:'105.009142,29.583624',accurate:100},
+{name:'凯全',data:'106.670392,29.771642',accurate:100},
+{name:'宜高',data:'106.65558,29.626258',accurate:100},
+{name:'顺雅',data:'106.240685,29.483857',accurate:100},
+{name:'英超',data:'106.233077,29.55102',accurate:100},
+{name:'凯硕',data:'120.520291,31.324978',accurate:100},
+{name:'谷崧',data:'120.82027,31.573615',accurate:100},
+{name:'敏煌',data:'121.041465,31.244249',accurate:100},
+{name:'三阳',data:'120.649379,31.452694',accurate:100},
+{name:'渝榕',data:'120.937588,31.496439',accurate:100},
+{name:'晖美',data:'113.808151,22.79666',accurate:100},
+{name:'隆登',data:'120.646145,31.100605',accurate:100},
+{name:'联懋',data:'114.354579,22.685065',accurate:100},
+{name:'源进',data:'120.885579,31.282418',accurate:100},
+{name:'通达',data:'118.710464,24.784507',accurate:100},
+{name:'晟铭',data:'113.74507,22.782929',accurate:100},
+{name:'天申',data:'120.912173,31.429195',accurate:100},
+{name:'国晟五金',data:'120.644528,31.223798',accurate:100},
+{name:'广禾',data:'121.047306,31.269482',accurate:100},
+{name:'锜远',data:'120.991493,31.471221',accurate:100},
+{name:'嘉峰',data:'121.070588,31.448193',accurate:100},
+{name:'龙漉',data:'120.73837,31.364335',accurate:100},
+{name:'羽田',data:'121.039649,31.498942',accurate:100},
+{name:'欣冠',data:'120.388067,31.627673',accurate:100},
+{name:'英力',data:'106.162666,29.808236',accurate:100},
+{name:'大昶宝',data:'105.754985,29.444225',accurate:100},
+{name:'广泰',data:'120.67528,31.350912',accurate:100},
+{name:'英展',data:'121.024696,31.364883',accurate:100},
+{name:'华夏',data:'121.257844,31.544636',accurate:100},
+{name:'旭信',data:'120.956249,31.447188',accurate:100},
+{name:'立讯',data:'120.956295,31.176721',accurate:100},
+{name:'道蒙恩',data:'120.771286,31.152378',accurate:100},
+{name:'费莱德',data:'121.342893,30.881334',accurate:100},
+{name:'竹昌',data:'121.344822,31.064475',accurate:100},
+{name:'竹惠',data:'121.493278,30.892369',accurate:100},
+{name:'绿德',data:'118.937294,32.323235',accurate:100},
+{name:'泰州巨腾',data:'119.877882,32.429629',accurate:100},
+{name:'上凯',data:'120.592823,31.07518',accurate:100}]
+        var map = new AMap.Map('container',{resizeEnable: true,zoom:4});
+        var markers = []; //province见Demo引用的JS文件
+        var circles = [];
+        for (var i = 0; i < provinces.length; i += 1) {
+    			var marker,color = getRandomColor(),name = "<span style='color:red;font-weight:bold;font-size:14px;'>"+provinces[i].name+"</span>";
+  				var icon = new AMap.Icon({
+  					image: 'http://vdata.amap.com/icons/b18/1/2.png',
+  					size: new AMap.Size(24, 24)
+  				});
+  				marker = new AMap.Marker({
+  					icon: icon,
+  					position: provinces[i].data.split(','),
+  					offset: new AMap.Pixel(-12,-12),
+  					zIndex: 101,
+  					content: name,
+  					map: map
+  				});
+    			markers.push(marker);
+    			var circle;
+    			circle = new AMap.Circle({
+    				map:map,
+    				center:provinces[i].data.split(','),
+    				zIndex:101,
+    				radius:provinces[i].accurate,
+    				strokeColor: color,
+            strokeOpacity: 1,
+            strokeWeight: 1,
+            fillColor: color,
+            fillOpacity: 0.35
+    			})
+    		}
+        /*var polygon;
+				polygon = new AMap.Polygon({
+	            map: map,
+	            path: [[121.246549,30.338988],[121.245067,30.338753],[121.243629,30.338518],[121.240321,30.33816],[121.24045,30.336234],[121.240557,30.33466],[121.24517,30.334771],[121.249312,30.334882],[121.248626,30.339233]],
+	            strokeColor: "#09f",
+	            strokeOpacity: 1,
+	            strokeWeight: 1,
+	            fillColor: "#09f",
+	            fillOpacity: 0.35
+	        });*/
+			  map.setFitView();
+    </script>
+    <script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
+  </body>
+</html>
